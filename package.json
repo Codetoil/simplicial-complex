@@ -1,0 +1,48 @@
+{
+  "name": "re9nc",
+  "version": "0.0.21",
+  "description": "Topological indexing for simplicial complexes",
+  "main": "topology.js",
+  "dependencies": {
+    "bit-twiddle": "^1.0.0",
+    "union-find": "^1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "tape test/*.js",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Codetoil/simplicial-complex.git"
+  },
+  "keywords": [
+    "mesh",
+    "cell",
+    "complex",
+    "simplex",
+    "simplicial",
+    "topology",
+    "vertex",
+    "triangle",
+    "star",
+    "edge",
+    "graph",
+    "winged",
+    "edge",
+    "half",
+    "edge"
+  ],
+  "author": "Mikola Lysenko",
+  "contributors": [
+    "Anthony Michalek <ianthisawesomee@gmail.com>"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "24aa75407005c898a4171dcc1e97215a261b3b79",
+  "devDependencies": {
+    "react-scripts": "1.0.0",
+    "tape": "^2.12.3"
+  }
+}
