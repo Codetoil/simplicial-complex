@@ -1,6 +1,6 @@
 {
-  "name": "re9nc",
-  "version": "0.0.21",
+  "name": "simplicial-complex",
+  "version": "1.0.0",
   "description": "Topological indexing for simplicial complexes",
   "main": "topology.js",
   "dependencies": {
@@ -8,10 +8,7 @@
     "union-find": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "tape test/*.js",
-    "eject": "react-scripts eject"
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -35,14 +32,10 @@
     "edge"
   ],
   "author": "Mikola Lysenko",
-  "contributors": [
-    "Anthony Michalek <ianthisawesomee@gmail.com>"
-  ],
+  "contributors": ["Anthony Michalek <ianthisawesomee@gmail.com>"],
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "24aa75407005c898a4171dcc1e97215a261b3b79",
   "devDependencies": {
-    "react-scripts": "1.0.0",
     "tape": "^2.12.3"
   }
 }

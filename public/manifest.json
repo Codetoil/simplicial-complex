@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "simplicial_complex",
+  "name": "Simplicial Complex",
   "icons": [
     {
       "src": "favicon.ico",
