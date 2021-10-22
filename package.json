@@ -4,8 +4,8 @@
   "description": "Topological indexing for simplicial complexes",
   "main": "topology.js",
   "dependencies": {
-    "bit-twiddle": "^1.0.0",
-    "union-find": "^1.0.0"
+    "bit-twiddle": "^1.0.2",
+    "union-find": "^1.0.2"
   },
   "scripts": {
     "test": "tape test/*.js"
@@ -32,10 +32,9 @@
     "edge"
   ],
   "author": "Mikola Lysenko",
-  "contributors": ["Anthony Michalek <ianthisawesomee@gmail.com>"],
+  "contributors": [
+    "Anthony Michalek <ianthisawesomee@gmail.com>"
+  ],
   "license": "MIT",
-  "readmeFilename": "README.md",
-  "devDependencies": {
-    "tape": "^2.12.3"
-  }
+  "readmeFilename": "README.md"
 }

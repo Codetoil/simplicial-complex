@@ -1,46 +1,40 @@
-"use strict";
-"use restrict";
-
-var bits = require("bit-twiddle"),
-  UnionFind = require("union-find");
+import bits from "bit-twiddle";
+import UnionFind from "union-find";
 
 //Returns the dimension of a cell complex
-function dimension(cells) {
-  var d = 0,
+export function dimension(cells) {
+  var result = 0,
     max = Math.max;
   for (var i = 0, il = cells.length; i < il; ++i) {
-    d = max(d, cells[i].length);
+    result = max(result, cells[i].length);
   }
-  return d - 1;
+  return result - 1;
 }
-exports.dimension = dimension;
 
 //Counts the number of vertices in faces
-function countVertices(cells) {
-  var vc = -1,
+export function countVertices(cells) {
+  var vertexCount = -1,
     max = Math.max;
   for (var i = 0, il = cells.length; i < il; ++i) {
-    var c = cells[i];
-    for (var j = 0, jl = c.length; j < jl; ++j) {
-      vc = max(vc, c[j]);
+    var cell = cells[i];
+    for (var j = 0, jl = cell.length; j < jl; ++j) {
+      vertexCount = max(vertexCount, cell[j]);
     }
   }
-  return vc + 1;
+  return vertexCount + 1;
 }
-exports.countVertices = countVertices;
 
 //Returns a deep copy of cells
-function cloneCells(cells) {
+export function cloneCells(cells) {
   var ncells = new Array(cells.length);
   for (var i = 0, il = cells.length; i < il; ++i) {
     ncells[i] = cells[i].slice(0);
   }
   return ncells;
 }
-exports.cloneCells = cloneCells;
 
 //Ranks a pair of cells up to permutation
-function compareCells(a, b) {
+export function compareCells(a, b) {
   var n = a.length,
     t = a.length - b.length,
     min = Math.min;
@@ -89,14 +83,13 @@ function compareCells(a, b) {
       return 0;
   }
 }
-exports.compareCells = compareCells;
 
 function compareZipped(a, b) {
   return compareCells(a[0], b[0]);
 }
 
 //Puts a cell complex into normal order for the purposes of findCell queries
-function normalize(cells, attr) {
+export function normalize(cells, attr) {
   if (attr) {
     var len = cells.length;
     var zipped = new Array(len);
@@ -114,10 +107,9 @@ function normalize(cells, attr) {
     return cells;
   }
 }
-exports.normalize = normalize;
 
 //Removes all duplicate cells in the complex
-function unique(cells) {
+export function unique(cells) {
   if (cells.length === 0) {
     return [];
   }
@@ -136,10 +128,9 @@ function unique(cells) {
   cells.length = ptr;
   return cells;
 }
-exports.unique = unique;
 
 //Finds a cell in a normalized cell complex
-function findCell(cells, c) {
+export function findCell(cells, c) {
   var lo = 0,
     hi = cells.length - 1,
     r = -1;
@@ -157,10 +148,9 @@ function findCell(cells, c) {
   }
   return r;
 }
-exports.findCell = findCell;
 
 //Builds an index for an n-cell.  This is more general than dual, but less efficient
-function incidence(from_cells, to_cells) {
+export function incidence(from_cells, to_cells) {
   var index = new Array(from_cells.length);
   for (var i = 0, il = index.length; i < il; ++i) {
     index[i] = [];
@@ -194,10 +184,9 @@ function incidence(from_cells, to_cells) {
   }
   return index;
 }
-exports.incidence = incidence;
 
 //Computes the dual of the mesh.  This is basically an optimized version of buildIndex for the situation where from_cells is just the list of vertices
-function dual(cells, vertex_count) {
+export function dual(cells, vertex_count) {
   if (!vertex_count) {
     return incidence(unique(skeleton(cells, 0)), cells, 0);
   }
@@ -213,10 +202,9 @@ function dual(cells, vertex_count) {
   }
   return res;
 }
-exports.dual = dual;
 
 //Enumerates all cells in the complex
-function explode(cells) {
+export function explode(cells) {
   var result = [];
   for (var i = 0, il = cells.length; i < il; ++i) {
     var c = cells[i],
@@ -233,10 +221,9 @@ function explode(cells) {
   }
   return normalize(result);
 }
-exports.explode = explode;
 
 //Enumerates all of the n-cells of a cell complex
-function skeleton(cells, n) {
+export function skeleton(cells, n) {
   if (n < 0) {
     return [];
   }
@@ -257,10 +244,9 @@ function skeleton(cells, n) {
   }
   return normalize(result);
 }
-exports.skeleton = skeleton;
 
 //Computes the boundary of all cells, does not remove duplicates
-function boundary(cells) {
+export function boundary(cells) {
   var res = [];
   for (var i = 0, il = cells.length; i < il; ++i) {
     var c = cells[i];
@@ -276,7 +262,6 @@ function boundary(cells) {
   }
   return normalize(res);
 }
-exports.boundary = boundary;
 
 //Computes connected components for a dense cell complex
 function connectedComponents_dense(cells, vertex_count) {
@@ -337,10 +322,9 @@ function connectedComponents_sparse(cells) {
 }
 
 //Computes connected components for a cell complex
-function connectedComponents(cells, vertex_count) {
+export function connectedComponents(cells, vertex_count) {
   if (vertex_count) {
     return connectedComponents_dense(cells, vertex_count);
   }
   return connectedComponents_sparse(cells);
 }
-exports.connectedComponents = connectedComponents;
